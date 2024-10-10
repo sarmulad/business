@@ -4,19 +4,20 @@ import Smile from "../images/smile.svg";
 import { ReactComponent as Pfps } from "../images/pfp.svg";
 import { ReactComponent as Arrow } from "../images/Arrow.svg";
 import { ReactComponent as ArrowDown } from "../images/ArrowDown.svg";
-
 import ScrollingBanner from "./ScrollingBanner";
+
 const Pfp = () => {
   const [userImage, setUserImage] = useState(null);
   const [resultImage, setResultImage] = useState(null);
+  const [isProcessing, setIsProcessing] = useState(false);
   const canvasRef = useRef(null);
 
-  // This would be your overlay image URL
   const overlayImageUrl = Smile;
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
+      setIsProcessing(true);
       const reader = new FileReader();
       reader.onload = (e) => {
         setUserImage(e.target.result);
@@ -30,20 +31,16 @@ const Pfp = () => {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext("2d");
 
-      // Create new images for user upload and overlay
       const uploadedImage = new Image();
       const overlayImage = new Image();
 
-      // Set crossOrigin to anonymous to avoid CORS issues
       uploadedImage.crossOrigin = "anonymous";
       overlayImage.crossOrigin = "anonymous";
 
       uploadedImage.onload = () => {
-        // Draw user image
         canvas.width = 500;
         canvas.height = 500;
 
-        // Calculate scaling and positioning to center the image
         const scale = Math.max(
           canvas.width / uploadedImage.width,
           canvas.height / uploadedImage.height
@@ -59,16 +56,10 @@ const Pfp = () => {
           uploadedImage.height * scale
         );
 
-        // Load and draw overlay image
         overlayImage.onload = () => {
-          // Calculate the scale to fit the overlay width to the canvas
           const overlayScale = canvas.width / overlayImage.width;
-
-          // Calculate new dimensions for the overlay
           const overlayWidth = canvas.width;
           const overlayHeight = overlayImage.height * overlayScale;
-
-          // Position the overlay at the bottom center
           const overlayX = 0;
           const overlayY = canvas.height - overlayHeight;
 
@@ -81,6 +72,7 @@ const Pfp = () => {
           );
 
           setResultImage(canvas.toDataURL("image/png"));
+          setIsProcessing(false);
         };
         overlayImage.src = overlayImageUrl;
       };
@@ -153,11 +145,12 @@ const Pfp = () => {
                         className="max-h-full max-w-full object-contain"
                       />
                     ) : (
-                      //   <ImageIcon className="w-12 h-12 text-gray-400" />
                       <div>
-                        <label className="flex flex-col items-center   px-4 py-6   rounded-lg    cursor-pointer  ">
+                        <label className="flex flex-col items-center px-4 py-6 rounded-lg cursor-pointer">
                           <span className="mt-2 text-[12px] leading-normal text-white text-center">
-                            Waiting for you to upload...
+                            {isProcessing
+                              ? "Processing..."
+                              : "Waiting for you to upload..."}
                           </span>
                         </label>
                       </div>
@@ -179,7 +172,6 @@ const Pfp = () => {
               </div>
             </div>
 
-            {/* Hidden canvas for image processing */}
             <canvas ref={canvasRef} style={{ display: "none" }} />
           </div>
         </div>
