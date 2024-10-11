@@ -21,13 +21,13 @@ const Hero = () => {
               Crypto’s next culture cult
             </p>
             <button className="rounded-[14px] border-2 shadow-sm text-white px-6 py-3 text-lg  w-[100%]">
-              CA:
+              CA:HmyYUSLfd8jwzWdZx31AA8KRChgr1gRKR6pPrTL1pump
             </button>
             <div className="flex gap-4 mt-5">
               <a href="https://T.me/BusinessOnSol">
                 <img src={tg} alt="tg-icon" />
               </a>
-              <a href="#">
+              <a href="https://dexscreener.com/solana/7RtHArBTxeZHNwCL72uUBnCeizXns3PA79e8rcq3RyoK">
                 <img src={dex} alt="tg-icon" />
               </a>
               <a href="https://X.com/BusinessOnSol">

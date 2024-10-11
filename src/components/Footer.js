@@ -14,7 +14,7 @@ const Footer = () => {
           <a href="https://T.me/BusinessOnSol">
             <img src={tg} alt="tg-icon" />
           </a>
-          <a href="#">
+          <a href="https://dexscreener.com/solana/7RtHArBTxeZHNwCL72uUBnCeizXns3PA79e8rcq3RyoK">
             <img src={dex} alt="tg-icon" />
           </a>
           <a href="https://X.com/BusinessOnSol">
