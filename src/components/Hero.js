@@ -20,8 +20,10 @@ const Hero = () => {
             <p className=" font-bold text-2xl text-white mb-6">
               Crypto’s next culture cult
             </p>
-            <button className="rounded-[14px] border-2 shadow-sm text-white px-6 py-3 text-lg  w-[100%]">
-              CA:HmyYUSLfd8jwzWdZx31AA8KRChgr1gRKR6pPrTL1pump
+            <button className="rounded-[14px] border-2 shadow-sm  text-white px-6 py-3 text-sm  w-[100%]">
+              CA:HmyYUSLfd8jwzWdZx31AA8KRChgr1
+              <br className="md:hidden" />
+              gRKR6pPrTL1pump
             </button>
             <div className="flex gap-4 mt-5">
               <a href="https://T.me/BusinessOnSol">
